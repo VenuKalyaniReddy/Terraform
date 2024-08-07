@@ -3,7 +3,7 @@ resource "aws_instance" "web" {
     ami = var.ami_id
     instance_type = var.instance_names[count.index] == "mongodb" || var.instance_names[count.index] == "mysql" || var.instance_names[count.index] == "shipping" ? "t3.small" : "t2.micro"
     tags = {
-        name= var.instance_names[count.index]
+        Name= var.instance_names[count.index]  ### name s are created for instances like web , mongodb, mysql etc
     }
 }
 
