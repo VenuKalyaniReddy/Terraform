@@ -1,5 +1,5 @@
-resource "aws_security_gruop" "roboshop-all" {
-    name = "dynamic-demo"
+resource "aws_security_group" "roboshop-all" {
+    name = "dynamic-demo-aws"   ##sg-name 
     description = "dynamic-demo"
 
     dynamic ingress {
@@ -17,11 +17,11 @@ resource "aws_security_gruop" "roboshop-all" {
         from_port = 0
         to_port = 0
         protocol = "-1"
-        cidr_blocks = ["0.0.0.0./0"]
+        cidr_blocks = [ "0.0.0.0/0" ]
     }
 
     tags = {
-        Name = "dynamic-demo"
-        
+        Name = "dynamic-demo-1" ##tag name
+
     }
 }
