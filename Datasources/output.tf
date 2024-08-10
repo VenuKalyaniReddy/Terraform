@@ -2,7 +2,7 @@ output "ami_id" {
   value = data.aws_ami.RHEL-9.id
 }
 
-output "aws_ami_id" {
+output "awsec2_ami_id" {
   value = data.aws_ami.aws-linux-2.id
 }
 
