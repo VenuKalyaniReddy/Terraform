@@ -23,7 +23,7 @@ resource "aws_instance" "web" {
 ## remote-exce starts
  connection {
     type     = "ssh"
-    user     = "centos"
+    user     = "ec2-user"
     password = "DevOps321"
     host     = self.public_ip
   }
