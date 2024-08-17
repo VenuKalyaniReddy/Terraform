@@ -39,7 +39,7 @@ resource "aws_instance" "web" {
   
 ## security group
 
-resource "aws-security-group" "roboshop-all" {
+resource "aws_security_group" "roboshop-all" {
   name = "provisioner"
 
   ingress {
@@ -61,7 +61,7 @@ resource "aws-security-group" "roboshop-all" {
     cidr_blocks = ["0.0.0.0/0"]
 
   }
-  
+
   tags = {
         Name = "provisioner"
     }
