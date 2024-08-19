@@ -1,5 +1,5 @@
 resource "aws_instance" "web" {
-    ami = "ami-0b4f379183e5706b9"   # devops-practice ami rhel-9
+    ami = "ami-041e2ea9402c46c32"   # devops-practice ami rhel-9
     instance_type = "t2.micro"
     vpc_security_group_ids = [aws_security_group.roboshop-all.id]
 
@@ -23,7 +23,7 @@ resource "aws_instance" "web" {
 ## remote-exce starts
  connection {
     type     = "ssh"
-    user     = "centos"
+    user     = "ec2-user"
     password = "DevOps321"
     host     = self.public_ip
   }
@@ -31,6 +31,7 @@ resource "aws_instance" "web" {
   provisioner "remote-exec" {
     inline = [
       "echo 'this is from remote exec' > /tmp/remote.txt",
+      "sudo yum install epel-release -y",  # Ensure EPEL is available
       "sudo yum install nginx -y",
       "sudo systemctl start nginx"
     ]
@@ -61,6 +62,13 @@ resource "aws_security_group" "roboshop-all" {
     cidr_blocks = ["0.0.0.0/0"]
 
   }
+
+    egress {
+        from_port        = 0
+        to_port          = 0
+        protocol         = "-1"
+        cidr_blocks      = ["0.0.0.0/0"]
+    }
 
   tags = {
         Name = "provisioner"
